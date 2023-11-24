@@ -1,8 +1,12 @@
-
+import { Helmet } from 'react-helmet-async';
+import Slider from '../../Components/Slider/Slider';
 const Home = () => {
  return (
   <div>
-   <h1>This Is Home</h1>
+   <Helmet>
+    <title>Home | Tourist Guide</title>
+   </Helmet>
+   <Slider/>
   </div>
  );
 };

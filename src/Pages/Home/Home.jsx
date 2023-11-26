@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
-import Slider from "../../Components/Slider/Slider";
-import Tourism from "../../Components/Tourism/Tourism";
+import Slider from "./Slider/Slider";
+import Tourism from "./Tourism/Tourism";
+import TourType from "./TourType/TourType";
+import TouristStory from "./TouristStory/TouristStory";
 const Home = () => {
   return (
     <div>
@@ -9,6 +11,8 @@ const Home = () => {
       </Helmet>
       <Slider />
       <Tourism/>
+      <TourType/>
+      <TouristStory/>
     </div>
   );
 };

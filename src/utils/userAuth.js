@@ -4,7 +4,9 @@ import axiosSecure from "../Hooks/UseAxiosSecure";
 
 export const saveUser=async user=>{
  const currentUser={
+  name:user.displayName,
   email:user.email,
+  photo:user.photoURL,
   role:'tourist',
  }
 

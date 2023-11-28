@@ -60,8 +60,8 @@ const Navbar = () => {
       <li>
         <p>{user?.displayName}</p>
       </li>
-      <li><p>{user?.email}</p></li>
-      <li><p>Dashboard</p></li>
+      <li><p className="text-xs italic">{user?.email}</p></li>
+      <li><Link to="/dashboard/profile">Dashboard</Link></li>
       <li><p onClick={handelLogout}>Logout</p></li>
     </ul>
   </div>:<Link className="bg-[#10909e] rounded-3xl text-white mr-2 border-4 font-bold px-6 py-2" to='/login'>Login</Link>

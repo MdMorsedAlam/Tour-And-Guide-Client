@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
-import { imageUpdoad } from "../../utils/imageUpload";
+import { imageUpload } from "../../utils/imageUpload";
 import { saveUser, setToken } from "../../utils/userAuth";
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -26,7 +26,7 @@ const Register = () => {
     const pwd = form.pwd.value;
 
     try {
-      const imageData = await imageUpdoad(image);
+      const imageData = await imageUpload(image);
 
       const result = await createUser(email, pwd);
       await userUpdate(name, imageData?.data?.display_url);

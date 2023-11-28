@@ -1,6 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import Packages from "./Packages";
 
 const Tourism = () => {
   return (
@@ -78,41 +79,7 @@ const Tourism = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-1 gap-10 px-2 md:grid-cols-3">
-            <div className="card card-compact bg-base-100 shadow-xl">
-  <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-  <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-accent">View Package</button>
-    </div>
-  </div>
-</div>
-            <div className="card card-compact bg-base-100 shadow-xl">
-  <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-  <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-accent">View Package</button>
-    </div>
-  </div>
-</div>
-            <div className="card card-compact bg-base-100 shadow-xl">
-  <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-  <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-accent">View Package</button>
-    </div>
-  </div>
-</div>
-            </div>
-            <div className="flex justify-center mt-3">
-              <button className="btn btn-accent btn-outline">All Packages</button>
-            </div>
+           <Packages/>
           </TabPanel>
           <TabPanel>
           <div className="overflow-x-auto mx-10">

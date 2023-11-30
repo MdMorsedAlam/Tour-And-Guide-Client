@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const TourType = () => {
   const [typeData, setTypeData] = useState();
@@ -23,6 +24,9 @@ const TourType = () => {
   }, [axiosPublic]);
   return (
     <div>
+      <Helmet>
+        <title>Home | Tourist Guide</title>
+      </Helmet>
       <SectionTitle
         heading="Tour Types"
         margin="mt-10"

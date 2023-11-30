@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:2737",
+  baseURL: "https://tourist-guide-server-ivory.vercel.app",
   withCredentials: true,
 });
 

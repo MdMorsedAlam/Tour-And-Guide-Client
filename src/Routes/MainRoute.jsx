@@ -17,6 +17,7 @@ import AllPackages from "../Pages/Home/Tourism/AllPackages";
 import DetailsPackage from "../Pages/Home/Tourism/DetailsPackage";
 import AssignedTours from "../GuideDashboard/AssignedTours";
 import GuideProfile from "../Pages/Home/Tourism/GuideProfile";
+import TypePackage from "../Pages/Home/TourType/TypePackage";
 
 const myRoute = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const myRoute = createBrowserRouter([
         path: "/guideprofile/:id",
         element: <GuideProfile />,
       },
+      {
+        path:"/package-type/:name",
+        element:<TypePackage/>
+      }
     ],
   },
   {

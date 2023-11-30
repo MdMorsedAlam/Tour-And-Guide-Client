@@ -7,21 +7,18 @@ const AutoplaySlider = withAutoplay(AwesomeSlider);
 const Slider = () => {
   return (
     <div>
-     
-        <AutoplaySlider
-          play={true}
-          cancelOnInteraction={false} // should stop playing on user interaction
-          interval={6000}
-        >
-        
-          <div data-src="https://i.ibb.co/Mkm9VFD/educational.jpg" />
-          <div data-src="https://i.ibb.co/Mkm9VFD/educational.jpg" />
-          <div data-src="https://i.ibb.co/Mkm9VFD/educational.jpg" />
-          <div data-src="https://i.ibb.co/Mkm9VFD/educational.jpg" />
-     
-        </AutoplaySlider>
-      </div>
-  
+      <AutoplaySlider
+        play={true}
+        cancelOnInteraction={false} // should stop playing on user interaction
+        interval={6000}
+      >
+        <div data-src="https://i.ibb.co/6yXg8LR/photography.jpg" />
+        <div data-src="https://i.ibb.co/jhcfxRZ/img3.jpg" />
+        <div data-src="https://i.ibb.co/xSgmMvz/banner.jpg" />
+        <div data-src="https://i.ibb.co/4WqzcvK/grp.jpg" />
+        <div data-src="https://i.ibb.co/N2bhYJK/group.jpg" />
+      </AutoplaySlider>
+    </div>
   );
 };
 

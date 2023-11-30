@@ -1,59 +1,47 @@
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
-import {Swiper, SwiperSlide } from "swiper/react";
-import {Autoplay, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+import Marquee from "react-fast-marquee";
+import { useEffect } from "react";
+// import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 
 const TourType = () => {
+  const [typeData, setTypeData] = useState();
+  const axiosPublic = UseAxiosPublic();
+  // console.log(typeData);
+  // Educational,Historical,Religious,Cultural,Photography
+  useEffect(() => {
+    axiosPublic
+      .get("/packagetypes")
+      .then((res) => {
+        setTypeData(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [axiosPublic]);
   return (
     <div>
-      <SectionTitle heading="Tour Types" subHeading="Choosing Your Tour Type" />
-      <div>
-        {/* <img src="https://swiperjs.com/demos/images/nature-8.jpg" /> */}
-        <Swiper
-          slidesPerView={4}
-          centeredSlides={true}
-          spaceBetween={30}
-          loop={true}
-          grabCursor={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination,Autoplay]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <div className="w-36 cursor-pointer h-36 rounded-full bg-red-500 text-white text-center">
-              <h1>Hello</h1>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-36 h-36 rounded-full bg-red-500 text-white text-center">
-              <h1>Hello</h1>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-36 h-36 rounded-full bg-red-500 text-white text-center">
-              <h1>Hello</h1>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-36 h-36 rounded-full bg-red-500 text-white text-center">
-              <h1>Hello</h1>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-36 h-36 rounded-full bg-red-500 text-white text-center">
-              <h1>Hello</h1>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-36 h-36 rounded-full bg-red-500 text-white text-center">
-              <h1>Hello</h1>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+      <SectionTitle
+        heading="Tour Types"
+        margin="mt-10"
+        subHeading="Choosing Your Tour Type"
+      />
+      <div className="bg-slate-200 shadow-lg py-20">
+        <Marquee>
+          <div className="flex justify-center gap-20 items-center">
+            {typeData?.map((item, id) => (
+              <Link
+                key={id}
+                to={`/package-type/${item.name}`}
+                className="flex cursor-pointer justify-center items-center w-40 h-40 bg-cyan-300 rounded-full p-10"
+              >
+                <p className="text-xl font-bold text-red">{item.name}</p>
+              </Link>
+            ))}
+          </div>
+        </Marquee>
       </div>
     </div>
   );

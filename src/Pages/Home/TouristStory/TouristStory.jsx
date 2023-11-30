@@ -14,20 +14,25 @@ const TouristStory = () => {
       <SectionTitle
         heading="Tourist Stories"
         subHeading="Read Some Interesting Sotrys"
+        margin="mt-10"
       />
       <div className="my-10">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           {storis.slice(0, 4).map((story) => (
             <Link to={`/story/${story._id}`} key={story._id}>
-            <div className="card bg-base-100 shadow-xl">
-              <figure className="px-10 pt-10">
-                <img src={story.photo} alt={story.photo} className="rounded-xl" />
-              </figure>
-              <div className="card-body items-center text-center">
-                <h2 className="card-title">{story.title}</h2>
-                <p>{story.location}</p>
+              <div className="card bg-base-100 shadow-xl">
+                <figure className="px-10 pt-10">
+                  <img
+                    src={story.photo}
+                    alt={story.photo}
+                    className="rounded-xl"
+                  />
+                </figure>
+                <div className="card-body items-center text-center">
+                  <h2 className="card-title">{story.title}</h2>
+                  <p>{story.location}</p>
+                </div>
               </div>
-            </div>
             </Link>
           ))}
         </div>

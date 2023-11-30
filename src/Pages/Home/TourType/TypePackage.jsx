@@ -1,15 +1,30 @@
-import { BsHeart } from "react-icons/bs";
-import Loading from "../../../Components/Loading/Loading";
-import UsePackage from "../../../Hooks/UsePackage";
-import UseAuth from "../../../Hooks/UseAuth";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
+import { useEffect } from "react";
+import { BsHeart } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import UseAuth from "../../../Hooks/UseAuth";
+import Loading from "../../../Components/Loading/Loading";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 
-const AllPackages = () => {
-  const axiosPublic = UseAxiosPublic();
-  const [packages, loading] = UsePackage();
+const TypePackage = () => {
   const { user } = UseAuth();
+  const { name } = useParams();
+  const [typeData, setTypeData] = useState();
+  const axiosPublic = UseAxiosPublic();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    axiosPublic
+      .get(`/package-type?name=${name}`)
+      .then((res) => {
+        setTypeData(res.data);
+        setLoading(false);
+      })
+      .catch();
+  }, [axiosPublic, name]);
   const handelAddWishlist = async (item) => {
     const wishitem = { item, email: user.email };
     const uploaded = await axiosPublic.post("/wishlist", wishitem);
@@ -23,14 +38,18 @@ const AllPackages = () => {
       });
     }
   };
-
   if (loading) {
     return <Loading />;
   }
   return (
-    <div className="my-20">
+    <div className="my-16">
+      <SectionTitle
+        heading={`Packages Of ${name} Types`}
+        margin="mb-12"
+        subHeading="Choosing Your Tour Type"
+      />
       <div className="grid grid-cols-1 gap-10 px-2 md:grid-cols-2">
-        {packages?.map((item) => (
+        {typeData?.map((item) => (
           <div
             key={item._id}
             className="card card-compact bg-base-100 shadow-xl relative"
@@ -71,4 +90,4 @@ const AllPackages = () => {
   );
 };
 
-export default AllPackages;
+export default TypePackage;

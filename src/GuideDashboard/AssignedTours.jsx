@@ -1,14 +1,13 @@
-import UseAuth from "../Hooks/UseAuth";
 import { useQuery } from "@tanstack/react-query";
+import UseAuth from "../Hooks/UseAuth";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import SectionTitle from "../Components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import Loading from "../Components/Loading/Loading";
 
-const Bookings = () => {
+const AssignedTours = () => {
   const { user } = UseAuth();
   const axiosPublic = UseAxiosPublic();
-
   const {
     data: mybookings,
     isLoading,
@@ -16,30 +15,37 @@ const Bookings = () => {
   } = useQuery({
     queryKey: ["mybookings", user?.email],
     queryFn: async () => {
-      const res = await axiosPublic(`/bookings/${user?.email}`);
+      const res = await axiosPublic(`/mybookings/${user?.email}`);
       return res.data;
     },
   });
 
-  if (mybookings?.length > 3) {
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: `Congress You Will Get Discount`,
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  }
-
-  const handelDelete = (book) => {
+  const handelAccept = (book) => {
     axiosPublic
-      .delete(`/bookings/${book._id}`)
+      .patch(`/update-status-accept/${book._id}`, { status: "Accepted" })
       .then((res) => {
-        if (res.data.deletedCount > 0) {
+        if (res.data.modifiedCount > 0) {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `You Have Deleted ${book.pname} Package`,
+            title: `You Have Accepted ${book.pname} Package`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          refetch();
+        }
+      })
+      .catch();
+  };
+  const handelReject = (book) => {
+    axiosPublic
+      .patch(`/update-status-reject/${book._id}`, { status: "Rejected" })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `You Have Rejected ${book.pname} Package`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -55,8 +61,8 @@ const Bookings = () => {
     <div>
       <div>
         <SectionTitle
-          heading="My Bookings"
-          subHeading="Know About Them"
+          heading="My Booked Plan"
+          subHeading="Check Out"
           margin="mt-0"
         />
         <div className="overflow-x-auto mt-10">
@@ -65,7 +71,7 @@ const Bookings = () => {
             <thead>
               <tr>
                 <th>Package Name</th>
-                <th>Guide Name</th>
+                <th>Tourist Name</th>
                 <th>Tour Date</th>
                 <th>Price</th>
                 <th>Status</th>
@@ -77,29 +83,22 @@ const Bookings = () => {
               {mybookings?.map((book) => (
                 <tr key={book._id}>
                   <th>{book.pname}</th>
-                  <td>{book.gname}</td>
+                  <td>{book.name}</td>
                   <td>{book.date}</td>
                   <td>{book.price}</td>
                   <td>{book.status}</td>
                   <td className="flex gap-3">
                     <button
-                      disabled={book.status !== "In Review" && true}
                       className={`btn btn-accent btn-xs`}
-                      onClick={() => handelDelete(book)}
+                      onClick={() => handelAccept(book)}
                     >
-                      Cancel
+                      Accept
                     </button>
                     <button
-                      disabled={book.status !== "Accepted" && true}
-                      className="btn btn-accent btn-xs"
+                      onClick={() => handelReject(book)}
+                      className="btn btn-warning btn-xs"
                     >
-                      Pay
-                    </button>
-                    <button
-                      disabled={mybookings?.length > 3? false:true}
-                      className="btn btn-accent btn-xs"
-                    >
-                      Apply
+                      Reject
                     </button>
                   </td>
                 </tr>
@@ -112,4 +111,4 @@ const Bookings = () => {
   );
 };
 
-export default Bookings;
+export default AssignedTours;

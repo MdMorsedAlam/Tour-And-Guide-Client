@@ -15,6 +15,8 @@ import AllStories from "../Pages/AllStories/AllStories";
 import DetailsStory from "../Pages/AllStories/DetailsStory";
 import AllPackages from "../Pages/Home/Tourism/AllPackages";
 import DetailsPackage from "../Pages/Home/Tourism/DetailsPackage";
+import AssignedTours from "../GuideDashboard/AssignedTours";
+import GuideProfile from "../Pages/Home/Tourism/GuideProfile";
 
 const myRoute = createBrowserRouter([
   {
@@ -47,9 +49,13 @@ const myRoute = createBrowserRouter([
         element: <AllPackages />,
       },
       {
-        path:'/packagedetails/:id',
-        element:<DetailsPackage/>
-      }
+        path: "/packagedetails/:id",
+        element: <DetailsPackage />,
+      },
+      {
+        path: "/guideprofile/:id",
+        element: <GuideProfile />,
+      },
     ],
   },
   {
@@ -76,6 +82,10 @@ const myRoute = createBrowserRouter([
       {
         path: "manageuser",
         element: <ManageUser />,
+      },
+      {
+        path: "assignedtours",
+        element: <AssignedTours />,
       },
     ],
   },

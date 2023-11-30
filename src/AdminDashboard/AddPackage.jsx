@@ -15,10 +15,12 @@ const AddPackage = () => {
   const handelAddPackage = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const about = form.about.value;
+    const title = form.title.value;
     const images = form.image.files;
     const type = form.triptype.value;
     const price = form.price.value;
+    const name = form.name.value;
+    const des = form.des.value;
     const day1title = form.title1.value;
     const day2title = form?.title2?.value || "";
     const day3title = form?.title3?.value || "";
@@ -45,7 +47,9 @@ const AddPackage = () => {
         imageUrl.push(upData.data.display_url);
       }
       const addPackageData = {
-        about: about,
+        name,
+        title,
+        des,
         days: [
           { title: day1title, des: day1des },
           { title: day2title, des: day2des },
@@ -55,8 +59,8 @@ const AddPackage = () => {
         ],
 
         images: imageUrl,
-        type: type,
-        price: price,
+        type,
+        price,
       };
 
       const res = await axiosPublic.post("/packages", addPackageData);
@@ -70,7 +74,13 @@ const AddPackage = () => {
         });
       }
     } catch (err) {
-      console.log(err);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: `Something Went Wrong ${err.message}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
     form.reset();
   };
@@ -86,16 +96,45 @@ const AddPackage = () => {
           <div className="flex md:flex-row gap-3 flex-col">
             <div className="form-control flex-1">
               <label className="label">
-                <span className="label-text font-bold">About This Package</span>
+                <span className="label-text font-bold">Package Name</span>
               </label>
               <input
                 type="text"
-                name="about"
-                placeholder="Type Your Package About"
+                name="name"
+                placeholder="Type Your Package Name"
                 className="input input-accent input-bordered"
                 required
               />
             </div>
+
+            <div className="form-control flex-1">
+              <label className="label">
+                <span className="label-text font-bold">Title</span>
+              </label>
+              <input
+                type="text"
+                name="title"
+                placeholder="Type Your Package Title"
+                className="input input-accent input-bordered"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="flex md:flex-row gap-3 flex-col">
+            <div className="form-control flex-1">
+              <label className="label">
+                <span className="label-text font-bold">Price</span>
+              </label>
+              <input
+                type="number"
+                name="price"
+                placeholder="Type Your Package Price"
+                className="input input-accent input-bordered"
+                required
+              />
+            </div>
+
             <div className="form-control flex-1">
               <label className="label">
                 <span className="label-text font-bold">Plan Days</span>
@@ -147,23 +186,10 @@ const AddPackage = () => {
               </>
             ))}
           </div>
-
           <div className="flex md:flex-row gap-3 flex-col">
             <div className="form-control flex-1">
               <label className="label">
-                <span className="label-text font-bold">Price</span>
-              </label>
-              <input
-                type="number"
-                name="price"
-                placeholder="Type Your Package Price"
-                className="input input-accent input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control flex-1">
-              <label className="label">
-                <span className="label-text font-bold">Plan Days</span>
+                <span className="label-text font-bold">Package Type</span>
               </label>
               <select
                 className="select select-accent w-full"
@@ -177,25 +203,37 @@ const AddPackage = () => {
                 <option>Photography Tours</option>
               </select>
             </div>
+            <div className="form-control flex-1">
+              <label className="label">
+                <span className="label-text font-bold">Select Four Photos</span>
+              </label>
+              <input
+                type="file"
+                name="image"
+                multiple
+                required
+                className="file-input file-input-bordered file-input-accent w-full"
+                accept="image/*"
+              />
+            </div>
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-bold">
-                Choose Multiple Photos
-              </span>
+              <span className="label-text font-bold">Package Description</span>
             </label>
-            <input
-              type="file"
-              name="image"
-              multiple
+            <textarea
+              className="textarea textarea-accent"
+              name="des"
+              placeholder="Write Package Description"
               required
-              className="file-input file-input-bordered file-input-accent w-full"
-              accept="image/*"
-            />
+            ></textarea>
           </div>
 
           <div className="form-control mt-6">
-            <button type="sumbit" className="btn btn-accent btn-outline">
+            <button
+              type="sumbit"
+              className="btn text-xl font-semibold btn-accent btn-outline"
+            >
               Add Package
             </button>
           </div>

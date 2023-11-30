@@ -6,6 +6,7 @@ import UseAxiosPublic from "./../Hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import axiosSecure from "../Hooks/UseAxiosSecure";
+import EditProfile from "../GuideDashboard/EditProfile";
 
 const MyProfile = () => {
   const { user } = UseAuth();
@@ -153,6 +154,8 @@ const MyProfile = () => {
             </div>
           </form>
         </div>
+      ) : userRole === "tourguide" ? (
+        <EditProfile />
       ) : (
         ""
       )}

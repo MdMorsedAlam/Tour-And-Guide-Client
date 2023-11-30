@@ -35,7 +35,7 @@ const AllPackages = () => {
             key={item._id}
             className="card card-compact bg-base-100 shadow-xl relative"
           >
-            <figure className="h-60">
+            <figure className="h-72">
               <img
                 src={item.images[0]}
                 alt={item.images[0]}
@@ -53,10 +53,15 @@ const AllPackages = () => {
 
             <div className="card-body">
               <h2 className="card-title">Trip Type : {item?.type}</h2>
-              <p>Trip Title : {item?.about}</p>
+              <p>Trip Title : {item?.title}</p>
               <p>Trip Price : {item?.price}</p>
               <div className="card-actions justify-end">
-              <Link to={`/packagedetails/${item._id}`} className="btn btn-accent">View Package</Link>
+                <Link
+                  to={`/packagedetails/${item._id}`}
+                  className="btn btn-accent"
+                >
+                  View Package
+                </Link>
               </div>
             </div>
           </div>

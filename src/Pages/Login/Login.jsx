@@ -21,7 +21,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const pwd = form.pwd.value;
-    console.log(email, pwd);
     try {
       const result = await loginUser(email, pwd);
       await setToken(result?.user?.email);
@@ -35,11 +34,9 @@ const Login = () => {
       navigate("/");
     } catch (err) {
       Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: `Something Wrong With ${err.message}`,
-        showConfirmButton: false,
-        timer: 1500,
+        icon: "error",
+        title: "Oops...",
+        text: "Invalid Email Or Password",
       });
     }
   };

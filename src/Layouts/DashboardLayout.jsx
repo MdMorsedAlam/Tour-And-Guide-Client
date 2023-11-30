@@ -75,7 +75,33 @@ const DashboardLayout = () => {
                     </li>
                   </>
                 ) : userRole === "tourguide" ? (
-                  <h1>Hello</h1>
+                  <>
+                    <li>
+                      <NavLink
+                        to="/dashboard/profile"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-white text-2xl border-b-2 border-[#10909e] pb-2"
+                            : "hover:text-[#ddd] text-2xl"
+                        }
+                      >
+                        My Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/assignedtours"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-white text-2xl border-b-2 border-[#10909e] pb-2"
+                            : "hover:text-[#ddd] text-2xl"
+                        }
+                      >
+                        My Assigned Tours
+                      </NavLink>
+                    </li>
+                    
+                  </>
                 ) : userRole === "admin" ? (
                   <>
                     <li>
@@ -118,6 +144,19 @@ const DashboardLayout = () => {
                 ) : (
                   ""
                 )}
+                <div className="divider divider-info"></div>
+                <li>
+                      <NavLink
+                        to="/"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-white text-2xl border-b-2 border-[#10909e] pb-2"
+                            : "hover:text-[#ddd] text-2xl"
+                        }
+                      >
+                        Home
+                      </NavLink>
+                    </li>
               </ul>
             </div>
           </div>

@@ -2,8 +2,21 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import Packages from "./Packages";
+import { useEffect, useState } from "react";
+import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
+import { Link } from "react-router-dom";
 
 const Tourism = () => {
+  const axiosPublic = UseAxiosPublic();
+  const [tourGuides, setTourGuides] = useState();
+  useEffect(() => {
+    axiosPublic
+      .get("/tourguides")
+      .then((res) => {
+        setTourGuides(res.data);
+      })
+      .catch();
+  }, [axiosPublic]);
   return (
     <div>
       <SectionTitle
@@ -79,45 +92,52 @@ const Tourism = () => {
             </div>
           </TabPanel>
           <TabPanel>
-           <Packages/>
+            <Packages />
           </TabPanel>
           <TabPanel>
-          <div className="overflow-x-auto mx-10">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>View Details</td>
-      </tr>
-      {/* row 2 */}
-      <tr className="hover">
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+            <div className="mx-10">
+              <SectionTitle
+                heading="Meet Our Tour Guides"
+                subHeading="Know About Them"
+                margin="my-8"
+              />
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Photo</th>
+                      <th>Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* row 1 */}
+                    {tourGuides?.map((guide, i) => (
+                      <tr key={i}>
+                        <th>{i + 1}</th>
+                        <td>
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img src={guide.photo} alt={guide.photo} />
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p>{guide.name}</p>
+                        </td>
+                        <td>
+                          <Link className="btn btn-accent" to={`/guideprofile/${guide._id}`}>
+                            View Details
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </TabPanel>
         </Tabs>
       </div>

@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 const Packages = () => {
   const axiosPublic = UseAxiosPublic();
   const [packages, loading] = UsePackage();
+
   const { user } = UseAuth();
   const handelAddWishlist = async (item) => {
     const wishitem = { item, email: user.email };
@@ -17,7 +18,7 @@ const Packages = () => {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `You Have added ${item.about} To Your Wishlist`,
+        title: `You Have added ${item.name} To Your Wishlist`,
         showConfirmButton: false,
         timer: 1500,
       });
@@ -51,10 +52,15 @@ const Packages = () => {
             </div>
             <div className="card-body">
               <h2 className="card-title">Trip Type : {item.type}</h2>
-              <p>Trip Title : {item.about}</p>
+              <p>Trip Title : {item.title}</p>
               <p>Trip Price : {item.price}</p>
               <div className="card-actions justify-end">
-                <Link to={`/packagedetails/${item._id}`} className="btn btn-accent">View Package</Link>
+                <Link
+                  to={`/packagedetails/${item._id}`}
+                  className="btn btn-accent"
+                >
+                  View Package
+                </Link>
               </div>
             </div>
           </div>

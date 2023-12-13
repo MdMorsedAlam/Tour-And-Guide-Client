@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 import { Helmet } from "react-helmet-async";
 
+import Tilt from "react-parallax-tilt";
+
 const TourType = () => {
   const [typeData, setTypeData] = useState();
   const axiosPublic = UseAxiosPublic();
@@ -33,16 +35,24 @@ const TourType = () => {
         subHeading="Choosing Your Tour Type"
       />
       <div className="bg-slate-200 shadow-lg py-20">
-        <Marquee>
+        <Marquee pauseOnHover>
           <div className="flex justify-center gap-20 items-center">
             {typeData?.map((item, id) => (
-              <Link
+              <Tilt
                 key={id}
-                to={`/package-type/${item.name}`}
-                className="flex cursor-pointer justify-center items-center w-40 h-40 bg-cyan-300 rounded-full p-10"
+                className="parallax-effect-glare-scale"
+                perspective={500}
+                glareEnable={true}
+                glareMaxOpacity={0.45}
+                scale={1.5}
               >
-                <p className="text-xl font-bold text-red">{item.name}</p>
-              </Link>
+                <Link
+                  to={`/package-type/${item.name}`}
+                  className="flex cursor-pointer justify-center items-center w-40 h-40 bg-cyan-300 rounded-full p-10"
+                >
+                  <p className="text-xl font-bold text-red">{item.name}</p>
+                </Link>
+              </Tilt>
             ))}
           </div>
         </Marquee>

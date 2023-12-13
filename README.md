@@ -19,3 +19,9 @@
 - Guide Can Accept Or Reject
 
 - A Tourist Can Choose Package With Tour Guide..
+
+# New Added Features
+
+- Framer Motion
+
+- Tilt Animation

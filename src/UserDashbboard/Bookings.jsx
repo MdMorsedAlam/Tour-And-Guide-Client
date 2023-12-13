@@ -4,6 +4,7 @@ import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import SectionTitle from "../Components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import Loading from "../Components/Loading/Loading";
+import { Helmet } from "react-helmet-async";
 
 const Bookings = () => {
   const { user } = UseAuth();
@@ -54,6 +55,9 @@ const Bookings = () => {
   return (
     <div>
       <div>
+        <Helmet>
+          <title>Bookings | Tourist Guide</title>
+        </Helmet>
         <SectionTitle
           heading="My Bookings"
           subHeading="Know About Them"
@@ -96,7 +100,7 @@ const Bookings = () => {
                       Pay
                     </button>
                     <button
-                      disabled={mybookings?.length > 3? false:true}
+                      disabled={mybookings?.length > 3 ? false : true}
                       className="btn btn-accent btn-xs"
                     >
                       Apply

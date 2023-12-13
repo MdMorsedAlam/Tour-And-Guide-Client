@@ -18,6 +18,7 @@ import DetailsPackage from "../Pages/Home/Tourism/DetailsPackage";
 import AssignedTours from "../GuideDashboard/AssignedTours";
 import GuideProfile from "../Pages/Home/Tourism/GuideProfile";
 import TypePackage from "../Pages/Home/TourType/TypePackage";
+import PrivateRoute from "./PrivateRoute";
 
 const myRoute = createBrowserRouter([
   {
@@ -51,21 +52,25 @@ const myRoute = createBrowserRouter([
       },
       {
         path: "/packagedetails/:id",
-        element: <DetailsPackage />,
+        element: (
+          <PrivateRoute>
+            <DetailsPackage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/guideprofile/:id",
         element: <GuideProfile />,
       },
       {
-        path:"/package-type/:name",
-        element:<TypePackage/>
-      }
+        path: "/package-type/:name",
+        element: <TypePackage />,
+      },
     ],
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     errorElement: <Error />,
     children: [
       {

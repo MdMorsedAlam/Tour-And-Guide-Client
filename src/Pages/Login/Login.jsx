@@ -7,7 +7,7 @@ import {
   BsBoxArrowInRight,
 } from "react-icons/bs";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
 import { saveUser, setToken } from "../../utils/userAuth";
@@ -15,6 +15,7 @@ const Login = () => {
   const { googleLogin, loginUser } = UseAuth();
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handelLogin = async (e) => {
     e.preventDefault();
@@ -31,7 +32,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/");
+      navigate(location?.state ? location.state : "/");
     } catch (err) {
       Swal.fire({
         icon: "error",

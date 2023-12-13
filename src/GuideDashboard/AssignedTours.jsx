@@ -4,6 +4,7 @@ import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import SectionTitle from "../Components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import Loading from "../Components/Loading/Loading";
+import { Helmet } from "react-helmet-async";
 
 const AssignedTours = () => {
   const { user } = UseAuth();
@@ -60,6 +61,9 @@ const AssignedTours = () => {
   return (
     <div>
       <div>
+        <Helmet>
+          <title>Assigned Tours | Tourist Guide</title>
+        </Helmet>
         <SectionTitle
           heading="My Booked Plan"
           subHeading="Check Out"

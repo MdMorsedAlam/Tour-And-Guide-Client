@@ -8,6 +8,7 @@ import UseAuth from "./../../../Hooks/UseAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const DetailsPackage = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -96,6 +97,9 @@ const DetailsPackage = () => {
   };
   return (
     <div className="my-10 mx-20">
+      <Helmet>
+        <title>Details Package | Tourist Guide</title>
+      </Helmet>
       <SectionTitle
         heading="Beautiful Places on This Trip"
         subHeading="Nice And Beautifull"

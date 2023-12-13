@@ -5,6 +5,7 @@ import logo from "../assets/logo.json";
 import { useEffect, useState } from "react";
 import axiosSecure from "../Hooks/UseAxiosSecure";
 import UseAuth from "../Hooks/UseAuth";
+import { Helmet } from "react-helmet-async";
 
 const DashboardLayout = () => {
   const { user } = UseAuth();
@@ -22,6 +23,9 @@ const DashboardLayout = () => {
   return (
     <MaxWidth>
       <div className="grid grid-cols-7">
+        <Helmet>
+          <title>Dashboard | Tourist Guide</title>
+        </Helmet>
         <div className="col-span-2 bg-[#1bdbf0] min-h-screen">
           <div className="flex flex-col gap-5 mx-2 justify-between items-center py-2">
             <div>
@@ -100,7 +104,6 @@ const DashboardLayout = () => {
                         My Assigned Tours
                       </NavLink>
                     </li>
-                    
                   </>
                 ) : userRole === "admin" ? (
                   <>
@@ -146,17 +149,17 @@ const DashboardLayout = () => {
                 )}
                 <div className="divider divider-info"></div>
                 <li>
-                      <NavLink
-                        to="/"
-                        className={({ isActive }) =>
-                          isActive
-                            ? "text-white text-2xl border-b-2 border-[#10909e] pb-2"
-                            : "hover:text-[#ddd] text-2xl"
-                        }
-                      >
-                        Home
-                      </NavLink>
-                    </li>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-white text-2xl border-b-2 border-[#10909e] pb-2"
+                        : "hover:text-[#ddd] text-2xl"
+                    }
+                  >
+                    Home
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </div>

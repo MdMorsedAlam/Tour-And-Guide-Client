@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UsePackage from "../../../Hooks/UsePackage";
 import Loading from "../../../Components/Loading/Loading";
 import { BsHeart } from "react-icons/bs";
@@ -11,7 +11,23 @@ const Packages = () => {
   const [packages, loading] = UsePackage();
 
   const { user } = UseAuth();
+  const navigate = useNavigate();
   const handelAddWishlist = async (item) => {
+    if (user === null) {
+      return Swal.fire({
+        title: "Opps!!",
+        text: "You Want To Login First",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    }
     const wishitem = { item, email: user.email };
     const uploaded = await axiosPublic.post("/wishlist", wishitem);
     if (uploaded.data.insertedId) {

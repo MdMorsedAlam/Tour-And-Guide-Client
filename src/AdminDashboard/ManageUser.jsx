@@ -3,6 +3,7 @@ import Loading from "../Components/Loading/Loading";
 import SectionTitle from "../Components/SectionTitle/SectionTitle";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import UseUsers from "../Hooks/UseUsers";
+import { Helmet } from "react-helmet-async";
 
 const ManageUser = () => {
   const [users, loading, refetch] = UseUsers();
@@ -41,6 +42,9 @@ const ManageUser = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>Manage User | Tourist Guide</title>
+      </Helmet>
       <SectionTitle
         heading="Manage Users"
         subHeading="do carefully"

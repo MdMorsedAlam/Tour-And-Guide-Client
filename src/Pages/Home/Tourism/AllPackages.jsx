@@ -5,6 +5,7 @@ import UseAuth from "../../../Hooks/UseAuth";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AllPackages = () => {
   const axiosPublic = UseAxiosPublic();
@@ -29,6 +30,9 @@ const AllPackages = () => {
   }
   return (
     <div className="my-20">
+      <Helmet>
+        <title>All Packages | Tourist Guide</title>
+      </Helmet>
       <div className="grid grid-cols-1 gap-10 px-2 md:grid-cols-2">
         {packages?.map((item) => (
           <div

@@ -4,6 +4,7 @@ import useWishlist from "../Hooks/useWishlist";
 import Loading from "../Components/Loading/Loading";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const WishList = () => {
   const [wishlist, loading, refetch] = useWishlist();
@@ -31,6 +32,9 @@ const WishList = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>Wishlist | Tourist Guide</title>
+      </Helmet>
       <SectionTitle
         heading="My Wishlist"
         subHeading="you can book"

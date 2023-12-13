@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Loading from "../../../Components/Loading/Loading";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import UseStory from "../../../Hooks/UseStory";
+import { motion } from "framer-motion";
 
 const TouristStory = () => {
   const [storis, loading] = UseStory();
@@ -20,7 +21,13 @@ const TouristStory = () => {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           {storis.slice(0, 4).map((story) => (
             <Link to={`/story/${story._id}`} key={story._id}>
-              <div className="card bg-base-100 shadow-xl">
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.8 }}
+                style={{ x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="card bg-base-100 shadow-xl"
+              >
                 <figure className="px-10 pt-10">
                   <img
                     src={story.photo}
@@ -32,7 +39,7 @@ const TouristStory = () => {
                   <h2 className="card-title">{story.title}</h2>
                   <p>{story.location}</p>
                 </div>
-              </div>
+              </motion.div>
             </Link>
           ))}
         </div>

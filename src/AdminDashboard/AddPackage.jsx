@@ -3,6 +3,7 @@ import SectionTitle from "../Components/SectionTitle/SectionTitle";
 import { imageUpload } from "../utils/imageUpload";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddPackage = () => {
   const [days, setDays] = useState([]);
@@ -86,6 +87,9 @@ const AddPackage = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Add Package | Tourist Guide</title>
+      </Helmet>
       <div className="card shrink-0 w-full mt-20 shadow-2xl bg-base-100">
         <form onSubmit={handelAddPackage} className="card-body">
           <SectionTitle
